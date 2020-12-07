@@ -1,4 +1,4 @@
-import EmployeeAPI from '../Controllers/User.controller';
+import EmployeeAPI from '../controllers/Employee.controller';
 import { Parser } from 'json2csv';
 import fs from 'fs';
 

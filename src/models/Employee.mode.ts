@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
-// Database User Schema of Mongoose
-export interface IUser extends Document {
+// Database Employee Schema of Mongoose
+export interface IEmlopyee extends Document {
   Email: String;
   Fname: String;
   Lname: String;
@@ -8,7 +8,7 @@ export interface IUser extends Document {
   EmployeeID: String;
 }
 
-const UserSchema: Schema = new Schema(
+const EmployeeSchema: Schema = new Schema(
   {
     Email: {
       type: String,
@@ -35,4 +35,4 @@ const UserSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.model<IUser>('User', UserSchema);
+export default mongoose.model<IEmlopyee>('Employee', EmployeeSchema);

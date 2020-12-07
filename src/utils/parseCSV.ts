@@ -1,7 +1,7 @@
 import fs from 'fs';
 import csv from 'csv-parser';
 import validator from './validator';
-import UserAPI from '../Controllers/User.controller';
+import EmployeeAPI from '../controllers/Employee.controller';
 import outSourceData from './outSourceData';
 
 export default (csvPath: string, csvOutputPath: string) => {
@@ -17,12 +17,12 @@ export default (csvPath: string, csvOutputPath: string) => {
       await Promise.all(
         validatedData.map(async (data) => {
           const { EmployeeID } = data;
-          const isEmployeeExisted = await UserAPI.FindOneEmployeeAndUpdate(
+          const isEmployeeExisted = await EmployeeAPI.FindOneEmployeeAndUpdate(
             EmployeeID,
             data
           );
           if (!isEmployeeExisted) {
-            await UserAPI.CreateEmployee(data);
+            await EmployeeAPI.CreateEmployee(data);
           }
         })
       );

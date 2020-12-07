@@ -1,11 +1,11 @@
-import User, { IUser } from '../Models/User.mode';
+import Employee, { IEmlopyee } from '../models/Employee.mode';
 
-interface ICreateUserInput {
-  Email: IUser['Email'];
-  Fname: IUser['Fname'];
-  Lname: IUser['Lname'];
-  Phone: IUser['Phone'];
-  EmployeeID: IUser['EmployeeID'];
+interface ICreateEmployeeInput {
+  Email: IEmlopyee['Email'];
+  Fname: IEmlopyee['Fname'];
+  Lname: IEmlopyee['Lname'];
+  Phone: IEmlopyee['Phone'];
+  EmployeeID: IEmlopyee['EmployeeID'];
 }
 
 async function CreateEmployee({
@@ -14,15 +14,15 @@ async function CreateEmployee({
   Lname,
   Phone,
   EmployeeID,
-}: ICreateUserInput): Promise<IUser> {
-  return User.create({
+}: ICreateEmployeeInput): Promise<IEmlopyee> {
+  return Employee.create({
     Email,
     Fname,
     Lname,
     Phone,
     EmployeeID,
   })
-    .then((data: IUser) => {
+    .then((data: IEmlopyee) => {
       return data;
     })
     .catch((error: Error) => {
@@ -33,11 +33,11 @@ async function CreateEmployee({
 
 async function FindOneEmployeeAndUpdate(
   EmployeeID: string,
-  newData: ICreateUserInput
+  newData: ICreateEmployeeInput
 ) {
-  return User.findOneAndUpdate({ EmployeeID }, newData)
-    .then((user: any) => {
-      if (user) {
+  return Employee.findOneAndUpdate({ EmployeeID }, newData)
+    .then((employee: any) => {
+      if (employee) {
         console.log(
           `This employee ${EmployeeID} already exists and has been updated`
         );
@@ -51,7 +51,7 @@ async function FindOneEmployeeAndUpdate(
 }
 
 async function FindAllEmployees() {
-  return User.find()
+  return Employee.find()
     .then((employees: any[]) => {
       if (employees) {
         return employees.map((employee) => ({
